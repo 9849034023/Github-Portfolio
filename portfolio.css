@@ -893,7 +893,7 @@ p {
     background-position: center;
     background-repeat: no-repeat;
     width: 100%;
-    height: 200px;
+    height: 350px;
     background-blend-mode: overlay;
     background-attachment: fixed;
     position: relative;
@@ -1385,7 +1385,6 @@ h2 {
     position: absolute;
     top: 80%;
     left: 5%;
-
     transform: translateY(-50%);
     color: white;
     font-size: 1.5em;
@@ -1646,7 +1645,13 @@ input::placeholder {
     }
 
     .footer-left {
-        margin: 40px;
+        margin:  20px 0 0 40px;
+     
+    }
+    .footer-left h2{
+   font-size: 10px;
+   line-height: 10px;
+   font-weight: 600;
     }
 
     .content-wrapper-footer,
@@ -1689,6 +1694,7 @@ input::placeholder {
         padding: 40px 0;
         height: 20vh;
         gap: 20%;
+        margin-bottom: 40px;
 
     }
 
@@ -1696,9 +1702,9 @@ input::placeholder {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 35%;
+        width: 32%;
         font-size: 12px;
-        margin-right: 40px;
+        margin:  10px 40px 0 0;
     }
 
     .footer-container {
