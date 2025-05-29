@@ -1622,6 +1622,28 @@ input::placeholder {
     outline: none;
 
 }
+.Qr {
+  display: none;
+  margin: 0  20px 0 0  ;
+  width: 35%;
+  max-width: 150px; /* reduced from 200px to 150px */
+  border-radius: 10px;
+  text-align: center;
+}
+
+.Qr img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .Qr {
+    display: block;
+  }
+}
+
 
 @media (max-width: 768px) {
     .footer-container {
@@ -1645,7 +1667,7 @@ input::placeholder {
     }
 
     .footer-left {
-        margin:  20px 0 0 40px;
+        margin:  20px 0 0 25px;
      
     }
     .footer-left h2{
@@ -1698,17 +1720,10 @@ input::placeholder {
 
     }
 
-    .Appreciate-button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 32%;
-        font-size: 12px;
-        margin:  10px 40px 0 0;
-    }
 
     .footer-container {
-        flex-direction: column;
+        display: flex;
+        width: 100%;
         gap: 40px;
         padding: 40px 0;
         height: 20vh;
@@ -1719,15 +1734,16 @@ input::placeholder {
     }
 
     .footer-section-follow {
-        width: 100%;
+       
         text-align: left;
-        align-items: flex-start;
+        margin: 0;
+        padding: 0;
+       
+           align-items: flex-start;
+        justify-content: flex-start;
+        width: 50%;
     }
 
-    .footer-section-follow {
-        align-items: flex-start;
-        justify-content: flex-start;
-    }
 
     .footbg-quote {
         font-size: 1.2em;
@@ -1736,8 +1752,67 @@ input::placeholder {
         width: calc(100% - 80px);
     }
 
-    .mark {
+    #mark {
         font-size: 10px;
-        margin-top: 40px;
+        margin: 10px 0;
+        /* width: 100%; */
+        padding: 0;
+    }
+ 
+
+.hidden {
+    display: none;
+}
+}
+@media (max-width: 768px) {
+    .Appreciate-button {
+        width: 32%;
+        font-size: 12px;
+        margin:  10px 10px 0 0;
+        background-color: #ffffff;
+        color: #333;
+        border: 1px solid black;
+        padding: 10px 30px;
+        border-radius: 20px;
+        font-size: medium;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        cursor: pointer;
+        width: 40%;
+        max-width: 300px;
+     
+    }
+
+    .Appreciate-button:hover {
+        transform: scale(1.1);
+        background: #1C1C1E;
+        color: white;
+        border: none;
+    }
+
+    .Appreciate-button i {
+        transition: color 0.3s ease;
+        color: #333;
+    }
+
+    .Appreciate-button.liked {
+        background-color: #000;
+        color: #fff;
+        width: 85%;
+        max-width: 44%;
+        border: none;
+    }
+
+    .Appreciate-button.liked i {
+        color: rgb(253, 0, 97);
+    }
+
+    .Appreciate-button:active {
+        transform: scale(0.95);
+        transition: transform 0.1s ease-out;
     }
 }

@@ -597,10 +597,14 @@
                             rel="noopener noreferrer" aria-label="LinkedIn"><i class="ri-linkedin-box-fill"></i></a>
                     </div>
                 </div>
+   <div class="Qr">
+  <img src="portfolio qr.png" alt="Portfolio QR Code">
+</div>
+
             </div>
             <div class="mark">
 
-                <div class="content-wrapper">
+                <div class="content-wrapper" id="mark">
                     © [2025] Raju Sambahamphe. All Rights Reserved.
                 </div>
 
@@ -612,9 +616,8 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+        // Navbar scroll effect
         let navbar = document.querySelector("nav");
-        let lastScrollY = window.scrollY;
-
         window.addEventListener("scroll", function () {
             if (window.scrollY > 100) {
                 navbar.classList.add("scrolled");
@@ -622,162 +625,109 @@
                 navbar.classList.remove("scrolled");
             }
         });
-    });
-    let liked = false;
-    function toggleLike(button) {
-        const icon = button.querySelector("i");
-        const text = button.querySelector(".like-text");
 
-        liked = !liked;
-        button.classList.toggle("liked", liked);
+        // Appreciate button toggle
+        document.querySelectorAll(".Appreciate-button").forEach(button => {
+            button.addEventListener("click", function () {
+                const icon = this.querySelector("i");
+                const text = this.querySelector(".like-text");
+                const liked = this.classList.toggle("liked");
 
-        // Toggle icon class
-        icon.classList.toggle('fa-regular', !liked);
-        icon.classList.toggle('fa-solid', liked);
+                icon.classList.toggle('fa-solid', liked);
+                icon.classList.toggle('fa-regular', !liked);
+                text.textContent = liked ? "Appreciated" : "Appreciate";
 
-        // Change button text
-        text.textContent = liked ? "Appreciated" : "Appreciate";
-
-        // Trigger confetti only when liked
-        if (liked) {
-            confetti({
-                particleCount: 100, // Increased particles
-                spread: 200,        // Wider explosion
-                origin: { y: 0.6 },
-                zIndex: 9999,       // Make sure it's above all content
-                scalar: 1.2         // Slightly larger confetti
+                if (liked && typeof confetti === "function") {
+                    confetti({
+                        particleCount: 100,
+                        spread: 200,
+                        origin: { y: 0.6 },
+                        zIndex: 9999,
+                        scalar: 1.2
+                    });
+                }
             });
+        });
+
+        // Comment slider
+        const commentsContainer = document.querySelector(".comments-container");
+        const comments = Array.from(document.querySelectorAll(".comments"));
+
+        function slideComments() {
+            if (comments.length < 3) return;
+            const firstComment = comments.shift();
+            comments.push(firstComment);
+
+            commentsContainer.innerHTML = "";
+            comments.forEach(comment => commentsContainer.appendChild(comment));
         }
-    }
 
-    const commentsContainer = document.querySelector(".comments-container");
-    const comments = Array.from(document.querySelectorAll(".comments"));
-    let index = 0;
+        if (comments.length >= 3) {
+            const temp1 = comments.shift();
+            const temp2 = comments.shift();
+            comments.push(temp1, temp2);
 
-    function slideComments() {
-        if (comments.length < 3) return;
+            commentsContainer.innerHTML = "";
+            comments.forEach(comment => commentsContainer.appendChild(comment));
+            setInterval(slideComments, 2000);
+        }
 
-        const firstComment = comments.shift();
-        comments.push(firstComment);
-
-        commentsContainer.innerHTML = "";
-        comments.forEach(comment => commentsContainer.appendChild(comment));
-    }
-
-    if (comments.length >= 3) {
-        const temp = comments.shift();
-        comments.push(temp);
-        const temp2 = comments.shift();
-        comments.push(temp2);
-
-        commentsContainer.innerHTML = "";
-        comments.forEach(comment => commentsContainer.appendChild(comment));
-    }
-
-    setInterval(slideComments, 2000);
-
-    console.log("JavaScript loaded successfully!");
-
-
-    window.addEventListener("scroll", function () {
-        const scrollTop = window.scrollY;
-        const scaleFactor = Math.max(1 - scrollTop / 500, 0.5); // zooms out but not smaller than 0.5
-
+        // Intro zoom-out
         const introContent = document.querySelector(".intro-content");
-        introContent.style.transform = `scale(${scaleFactor})`;
-        introContent.style.transition = "transform 0.1s ease-out";
-    });
+        window.addEventListener("scroll", function () {
+            const scrollTop = window.scrollY;
+            const scaleFactor = Math.max(1 - scrollTop / 500, 0.5);
+            introContent.style.transform = `scale(${scaleFactor})`;
+            introContent.style.transition = "transform 0.1s ease-out";
+        });
 
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobileNav');
-    const overlay = document.getElementById('overlay');
+        // Mobile nav toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobileNav');
+        const overlay = document.getElementById('overlay');
 
-    // Open mobile nav
-    hamburger.addEventListener('click', () => {
-        mobileNav.classList.toggle('open');
-        overlay.classList.toggle('show');
-    });
+        hamburger.addEventListener('click', () => {
+            mobileNav.classList.toggle('open');
+            overlay.classList.toggle('show');
+        });
 
-    // Close nav when clicking outside (overlay)
-    overlay.addEventListener('click', () => {
-        mobileNav.classList.remove('open');
-        overlay.classList.remove('show');
-    });
-
-    // Close nav when clicking any nav link
-    document.querySelectorAll('.mobile-nav a').forEach(link => {
-        link.addEventListener('click', () => {
+        overlay.addEventListener('click', () => {
             mobileNav.classList.remove('open');
             overlay.classList.remove('show');
         });
-    });
 
-    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+                overlay.classList.remove('show');
+            });
+        });
+
+        // Hamburger color logic
         const homeSection = document.querySelector("#projects1");
-
         function updateHamburgerColor() {
             const rect = homeSection.getBoundingClientRect();
             const isInView = rect.top <= 50 && rect.bottom >= 50;
 
-            if (isInView) {
-                document.body.classList.add("home");
-                document.body.classList.remove("not-home");
-            } else {
-                document.body.classList.add("not-home");
-                document.body.classList.remove("home");
-            }
+            document.body.classList.toggle("home", isInView);
+            document.body.classList.toggle("not-home", !isInView);
         }
-        let mobileNav = document.querySelector('.mobile-nav');
-        let overlay = document.querySelector('.overlay');
-        let lastScrollTop = 0;
 
-        // Auto-close menu on scroll
-        window.addEventListener('scroll', function () {
+        // Auto-close nav on scroll
+        window.addEventListener("scroll", function () {
+            updateHamburgerColor();
             if (mobileNav.classList.contains('open')) {
-                // Close the nav
                 mobileNav.classList.remove('open');
                 overlay.classList.remove('show');
             }
         });
 
-        // Run on scroll and on load
-        window.addEventListener("scroll", updateHamburgerColor);
-        updateHamburgerColor();
-        let liked = false;
-
-function toggleLike(button) {
-    const icon = button.querySelector("i");
-    const text = button.querySelector(".like-text");
-
-    liked = !liked;
-    button.classList.toggle("liked", liked);
-
-    icon.classList.toggle("fa-regular", !liked);
-    icon.classList.toggle("fa-solid", liked);
-
-    text.textContent = liked ? "Appreciated" : "Appreciate";
-
-    if (liked && typeof confetti === "function") {
-        confetti({
-            particleCount: 100,
-            spread: 200,
-            origin: { y: 0.6 },
-            zIndex: 9999,
-            scalar: 1.2
-        });
-    }
+        updateHamburgerColor(); // On load
+        function toggleQr() {
+    const qrDiv = document.querySelector(".Qr");
+    qrDiv.classList.toggle("hidden");
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-    const appreciateButton = document.querySelector(".Appreciate-button");
-    if (appreciateButton) {
-        appreciateButton.addEventListener("click", () => toggleLike(appreciateButton));
-        appreciateButton.addEventListener("touchstart", () => toggleLike(appreciateButton));
-    }
-});
-
     });
-    
 
 </script>
 
