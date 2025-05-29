@@ -459,7 +459,7 @@ p {
     .footbg,
     .contact-image {
         width: 100%;
-        height: 300px;
+        height: 200px;
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -473,7 +473,6 @@ p {
     .career-quote,
     .Application-Of-Graphic-Designs-quote,
     .projectbg-quote,
-    .footbg-quote,
     .contact-quote {
         position: absolute;
         transform: translateY(-50%);
@@ -481,8 +480,8 @@ p {
         font-size: 1.2em;
         width: 90%;
         text-align: center;
-        padding: 10px;
-        margin: 0 auto;
+        /* padding: 10px; */
+        /* margin: 0 40px; */
         z-index: 1;
     }
 
@@ -490,13 +489,13 @@ p {
     .career-quote p,
     .Application-Of-Graphic-Designs-quote p,
     .projectbg-quote p,
-    .footbg-quote p,
     .contact-quote p {
         color: white;
-        margin: 0;
-        line-height: 1.4;
-        font-size: 16px;
-        width: 100%;
+        margin: 0 40px;
+        line-height: 1.4;text-align: left;
+        font-size: 14px;
+        width: 80%;
+
     }
 }
 
@@ -842,7 +841,7 @@ p {
 
     .webpage-examples-section button,
     .websites button {
-        width: 100%;
+        width: 70%;
         max-width: 300px;
         font-size: 14px;
         margin: 10px auto;
@@ -894,7 +893,7 @@ p {
     background-position: center;
     background-repeat: no-repeat;
     width: 100%;
-    height: 350px;
+    height: 200px;
     background-blend-mode: overlay;
     background-attachment: fixed;
     position: relative;
@@ -922,11 +921,11 @@ h2 {
 
 .Application-Of-Graphic-Designs-quote p {
     color: white;
-    margin: 0;
+    margin: 0 40px;
     line-height: 1.4;
     /* margin: 0 38%; */
     height: auto;
-    width: 100%;
+    width: 80%;
 }
 
 .Projects {
@@ -1038,7 +1037,7 @@ h2 {
     background-position: center;
     background-repeat: no-repeat;
     width: 100%;
-    height: 350px;
+    height: 200px;
     background-color: rgba(28, 24, 24, 0.626);
     background-blend-mode: overlay;
     background-attachment: fixed;
@@ -1099,11 +1098,11 @@ h2 {
         overflow-x: hidden;
         /* Prevent horizontal scroll on smaller screens */
     }
-
+/* 
     .content-wrapper {
-        padding: 0 15px;
+        padding: 0 40px;
         /* Adjust outer container padding for mobile */
-    }
+    */
 
     h1 {
         font-size: 32px;
@@ -1166,7 +1165,7 @@ h2 {
         /* Add space below the image/text within each wrapper */
         position: static !important;
         /* Ensure no absolute/fixed positioning on wrappers */
-        margin: 0 !important;
+        margin: 0 40px !important;
         /* IMPORTANT: Reset any lingering margins on wrappers */
 
         /* Crucial: Unset any desktop-specific grid-column properties */
@@ -1226,6 +1225,7 @@ h2 {
     }
 
     .content-wrappers img {
+        margin: 0 40px;
         width: 100% !important;
         /* Ensure image takes full width of container */
         height: auto !important;
@@ -1244,7 +1244,7 @@ h2 {
     .hero .container {
         flex-direction: column;
         text-align: center;
-        padding: 40px 20px;
+        padding: 40px 40px;
     }
 
     .address h1 {
@@ -1373,7 +1373,7 @@ h2 {
     background-position: center;
     background-repeat: no-repeat;
     width: 100%;
-    height: 350px;
+    height: 200px;
     background-color: rgba(28, 24, 24, 0.626);
     background-blend-mode: overlay;
     background-attachment: fixed;
@@ -1385,6 +1385,7 @@ h2 {
     position: absolute;
     top: 80%;
     left: 5%;
+
     transform: translateY(-50%);
     color: white;
     font-size: 1.5em;
@@ -1645,7 +1646,7 @@ input::placeholder {
     }
 
     .footer-left {
-        padding-left: 40px;
+        margin: 40px;
     }
 
     .content-wrapper-footer,
@@ -1695,7 +1696,7 @@ input::placeholder {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 30%;
+        width: 35%;
         font-size: 12px;
         margin-right: 40px;
     }
@@ -1724,7 +1725,8 @@ input::placeholder {
 
     .footbg-quote {
         font-size: 1.2em;
-        left: 40px;
+        margin:0 40px;
+
         width: calc(100% - 80px);
     }
 
