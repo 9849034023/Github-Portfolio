@@ -1,4 +1,8 @@
 /* Reset and General Styles */
+html, body {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+}
 * {
     padding: 0;
     margin: 0;
@@ -1688,9 +1692,12 @@ input::placeholder {
     }
 
     .Appreciate-button {
-        width: 40%;
-        font-size: small;
-        padding-right: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30%;
+        font-size: 12px;
+        margin-right: 40px;
     }
 
     .footer-container {
@@ -1723,5 +1730,6 @@ input::placeholder {
 
     .mark {
         font-size: 10px;
+        margin-top: 40px;
     }
 }
