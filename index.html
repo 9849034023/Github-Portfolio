@@ -721,14 +721,15 @@
                 overlay.classList.remove('show');
             }
         });
-
+        // Run on scroll and on load
+        window.addEventListener("scroll", updateHamburgerColor);
         updateHamburgerColor(); // On load
-        function toggleQr() {
-    const qrDiv = document.querySelector(".Qr");
-    qrDiv.classList.toggle("hidden");
-}
-    });
 
+        function toggleQr() {
+            const qrDiv = document.querySelector(".Qr");
+            qrDiv.classList.toggle("hidden");
+        }
+  });
 </script>
 
 </html>
