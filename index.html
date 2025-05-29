@@ -743,38 +743,7 @@
         // Run on scroll and on load
         window.addEventListener("scroll", updateHamburgerColor);
         updateHamburgerColor();
-        let liked = false;
-
-function toggleLike(button) {
-    const icon = button.querySelector("i");
-    const text = button.querySelector(".like-text");
-
-    liked = !liked;
-    button.classList.toggle("liked", liked);
-
-    icon.classList.toggle("fa-regular", !liked);
-    icon.classList.toggle("fa-solid", liked);
-
-    text.textContent = liked ? "Appreciated" : "Appreciate";
-
-    if (liked && typeof confetti === "function") {
-        confetti({
-            particleCount: 100,
-            spread: 200,
-            origin: { y: 0.6 },
-            zIndex: 9999,
-            scalar: 1.2
-        });
-    }
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-    const appreciateButton = document.querySelector(".Appreciate-button");
-    if (appreciateButton) {
-        appreciateButton.addEventListener("click", () => toggleLike(appreciateButton));
-        appreciateButton.addEventListener("touchstart", () => toggleLike(appreciateButton));
-    }
-});
+       
 
     });
     
