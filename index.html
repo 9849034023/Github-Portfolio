@@ -391,68 +391,271 @@
                                 alt="Image 12" loading="lazy"></a></div>
                     <div class="vertical"><a href="newspaper-CS4.jpg" target="_blank"><img src="newspaper-CS4.jpg"
                                 alt="Image 15" loading="lazy"></a></div>
-                                
+
                     <!-- Row 7: 2 vertical, 1 horizontal -->
-                    <div class="vertical"><a href="dog removed.png" target="_blank"><img
-                                src="dog removed.png" alt="Image 5" loading="lazy"></a></div>
-                    <div class="vertical"><a href="Beach.png" target="_blank"><img src="Beach.png"
-                                alt="Image 13" loading="lazy"></a></div>
-                    <div class="horizontal"><a href="billboard mockup.png" target="_blank"><img src="billboard mockup.png"
-                                alt="Image 16" loading="lazy"></a></div>
-                    
-                    
+                    <div class="vertical"><a href="dog removed.png" target="_blank"><img src="dog removed.png"
+                                alt="Image 5" loading="lazy"></a></div>
+                    <div class="vertical"><a href="Beach.png" target="_blank"><img src="Beach.png" alt="Image 13"
+                                loading="lazy"></a></div>
+                    <div class="horizontal"><a href="billboard mockup.png" target="_blank"><img
+                                src="billboard mockup.png" alt="Image 16" loading="lazy"></a></div>
+
+
                     <!-- Row 8: 1 horizontal, 2 vertical -->
-                    <div class="horizontal"><a href="image restoration.png" target="_blank"><img src="image restoration.png"
-                                alt="Image 16" loading="lazy"></a></div>
-                   <div class="vertical">
+                    <div class="horizontal"><a href="image restoration.png" target="_blank"><img
+                                src="image restoration.png" alt="Image 16" loading="lazy"></a></div>
+                    <div class="vertical">
                         <a href="fb post.png" target="_blank">
                             <img src="fb post.png" alt="Kera Flyer" loading="lazy"
                                 onerror="this.onerror=null;this.src='fallback.png';">
                         </a>
                     </div>
-                    <div class="vertical"><a href="apple manipulation.png" target="_blank"><img src="apple manipulation.png"
-                                alt="Image 15" loading="lazy"></a></div>
+                    <div class="vertical"><a href="apple manipulation.png" target="_blank"><img
+                                src="apple manipulation.png" alt="Image 15" loading="lazy"></a></div>
                 </div>
             </div>
         </section>
 
+<section class="GD-projects" id="projects">
+  <style>
+    .GD-projects {
+      background-color: rgb(255, 255, 255);
+    }
 
-        <section class="GD-projects" id="projects">
+    .projectbg {
+      background-image: url('rainbow bear.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 350px;
+      background-color: rgba(28, 24, 24, 0.626);
+      background-blend-mode: overlay;
+      background-attachment: fixed;
+      position: relative;
+    }
 
-            <div class="projectbg">
-                <div class="projectbg-quote">
+    .projectbg-quote {
+      position: absolute;
+      top: 80%;
+      left: 5%;
+      transform: translateY(-50%);
+      color: white;
+      font-size: 1.5em;
+      width: 90%;
+      z-index: 1;
+    }
 
-                    <p>
-                        "Design is not just what it looks like and feels like. Design is how it works."
-                        <br>
-                        — Steve Jobs
-                    </p>
-                </div>
-            </div>
+    .Project-categories {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 20px;
+    }
 
-            <div class="content-wrapper">
-                <br><br>
-                <h1>Projects</h1>
-                <div class="Project-categories">
-                    <a href="kera-logo.svg" target="_blank">
-                        <button class="Project-button Adobe-Illustrator">
-                            Adobe Illustrator
-                        </button>
-                    </a>
-                    <a href="mockup.png" target="_blank">
-                        <button class="Project-button Adobe-Photoshop">
-                            Adobe Photoshop
-                        </button>
-                    </a>
-                    <a href="kera brochure sample.png" target="_blank">
-                        <button class="Project-button Adobe-In-Design">
-                            Adobe In Design
-                        </button>
-                    </a>
+    .Project-categories button {
+      font-size: 16px;
+      margin: 10px;
+      cursor: pointer;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      width: 250px;
+    }
 
-                </div>
-            </div>
-        </section>
+    .Project-categories button:hover {
+      transform: scale(1.15);
+      background: #1C1C1E;
+      color: white;
+      outline: none;
+    }
+
+#image-viewer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(0, 0, 0);
+  z-index: 9999;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#viewer-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.6s ease, opacity 0.4s ease;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  pointer-events: none; /* So clicks pass through to #image-viewer */
+}
+
+
+#viewer-img.animate-in {
+  opacity: 1;
+  transform: rotateY(0deg) scale(1);
+}
+
+#viewer-img.animate-out {
+  opacity: 0;
+  transform: rotateY(-90deg) scale(0.95);
+}
+
+
+#image-viewer:hover {
+  cursor: pointer;
+}
+
+    
+  </style>
+
+  <div class="projectbg">
+    <div class="projectbg-quote">
+      <p>
+        "Design is not just what it looks like and feels like. Design is how it works."
+        <br>— Steve Jobs
+      </p>
+    </div>
+  </div>
+
+  <div class="content-wrapper">
+    <br><br>
+    <h1>Projects</h1>
+
+    <div class="Project-categories" id="project-section">
+      <button class="Project-button Adobe-Illustrator" onclick="startSlideshow('illustrator')">
+        Adobe Illustrator
+      </button>
+      <button class="Project-button Adobe-Photoshop" onclick="startSlideshow('photoshop')">
+        Adobe Photoshop
+      </button>
+      <button class="Project-button Adobe-In-Design" onclick="startSlideshow('indesign')">
+        Adobe In Design
+      </button>
+    </div>
+
+<div id="image-viewer">
+  <img id="viewer-img" src="" />
+</div>
+
+  </div>
+
+  <script>
+    const imageSets = {
+      illustrator: [
+        "About logo1.png",
+        "About logo2.png",
+        "About logo3.png",
+        "kera-logo.svg"
+      ],
+      photoshop: [
+        "Product mockup.png",
+        "Product mockup2.png",
+        "mockup.png"
+      ],
+      indesign: [
+        "Brochure1.png",
+        "Brochure2.png",
+        "kera brochure sample.png"
+      ]
+    };
+document.getElementById("image-viewer").addEventListener("click", function (e) {
+  const viewerWidth = this.offsetWidth;
+  const clickX = e.clientX;
+
+  if (clickX < viewerWidth / 2) {
+    // Clicked on left half – go to previous image or exit
+    currentIndex--;
+    if (currentIndex < 0) {
+      exitSlideshow();
+    } else {
+      showImage();
+    }
+  } else {
+    // Clicked on right half – go to next image or exit
+    currentIndex++;
+    if (currentIndex >= currentImages.length) {
+      exitSlideshow();
+    } else {
+      showImage();
+    }
+  }
+});
+
+function exitSlideshow() {
+  const viewer = document.getElementById("image-viewer");
+  const section = document.getElementById("project-section");
+
+  viewer.style.display = "none";
+  section.style.display = "flex";
+}
+    
+    let currentImages = [];
+    let currentIndex = 0;
+
+    function startSlideshow(tool) {
+      currentImages = imageSets[tool];
+      currentIndex = 0;
+
+      const viewer = document.getElementById("image-viewer");
+      const section = document.getElementById("project-section");
+
+      section.style.display = "none";
+      viewer.style.display = "flex";
+
+      showImage(true);
+    }
+
+    function showImage(skipAnimation = false) {
+      const img = document.getElementById("viewer-img");
+      if (!img) return;
+
+      if (!skipAnimation) {
+        img.classList.remove("animate-in");
+        img.classList.add("animate-out");
+
+        setTimeout(() => {
+          img.src = currentImages[currentIndex];
+          img.classList.remove("animate-out");
+          requestAnimationFrame(() => {
+            img.classList.add("animate-in");
+          });
+        }, 250);
+      } else {
+        img.src = currentImages[currentIndex];
+        requestAnimationFrame(() => {
+          img.classList.add("animate-in");
+        });
+      }
+    }
+
+    function nextImage() {
+      currentIndex++;
+      if (currentIndex < currentImages.length) {
+        showImage();
+      } else {
+        const viewer = document.getElementById("image-viewer");
+        const section = document.getElementById("project-section");
+
+        viewer.style.display = "none";
+        section.style.display = "flex";
+      }
+    }
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        document.getElementById("image-viewer").style.display = "none";
+        document.getElementById("project-section").style.display = "flex";
+      }
+    });
+  </script>
+</section>
 
         <section class="contact">
             <h1>What I am passionate about?</h1>
@@ -481,6 +684,7 @@
 
                 </div>
             </div>
+
 
         </section>
 
@@ -632,6 +836,8 @@
             </div>
         </div>
     </footer>
+
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
 
@@ -750,6 +956,7 @@
             const qrDiv = document.querySelector(".Qr");
             qrDiv.classList.toggle("hidden");
         }
+      
     });
 </script>
 

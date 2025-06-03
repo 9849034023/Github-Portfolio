@@ -1,0 +1,210 @@
+<style>
+    /* Section background */
+.GD-projects {
+  background-color: rgb(255, 255, 255);
+}
+
+.projectbg {
+  background-image: url('rainbow bear.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 350px;
+  background-color: rgba(28, 24, 24, 0.626);
+  background-blend-mode: overlay;
+  background-attachment: fixed;
+  position: relative;
+}
+h1{
+    font-size: 60px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: "Heebo", sans-serif;
+}
+.projectbg-quote {
+  position: absolute;
+  top: 80%;
+  left: 5%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 1.5em;
+  width: 90%;
+  z-index: 1;
+}
+
+/* Buttons */
+.Project-categories {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.Project-categories button {
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  width: 250px;
+}
+
+.Project-categories button:hover {
+  transform: scale(1.15);
+  background: #1C1C1E;
+  color: white;
+  outline: none;
+}
+
+/* Slideshow viewer */
+#image-viewer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background: rgb(255, 255, 255); */
+  z-index: 9999;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#viewer-img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+#viewer-img.animate-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+#viewer-img.animate-out {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+</style>
+        <section class="GD-projects" id="projects">
+
+            <div class="projectbg">
+                <div class="projectbg-quote">
+
+                    <p>
+                        "Design is not just what it looks like and feels like. Design is how it works."
+                        <br>
+                        — Steve Jobs
+                    </p>
+                </div>
+            </div>
+
+            <div class="content-wrapper">
+                <br><br>
+                <h1>Projects</h1>
+                <div class="Project-categories" id="project-section">
+                    <button class="Project-button Adobe-Illustrator" onclick="startSlideshow('illustrator')">
+                        Adobe Illustrator
+                    </button>
+                    <button class="Project-button Adobe-Photoshop" onclick="startSlideshow('photoshop')">
+                        Adobe Photoshop
+                    </button>
+                    <button class="Project-button Adobe-In-Design" onclick="startSlideshow('indesign')">
+                        Adobe In Design
+                    </button>
+                </div>
+
+                <!-- Fullscreen Viewer -->
+                <div id="image-viewer"
+                    style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgb(255, 255, 255); z-index:9999; cursor:pointer;"
+                    onclick="nextImage()">
+                    <img id="viewer-img" src="" style="width:100%; height:100%; object-fit:contain;" />
+                </div>
+            </div>
+        </section>
+        <script>
+  const imageSets = {
+    illustrator: [
+      "About logo1.png",
+      "About logo2.png",
+      "About logo3.png",
+      "kera-logo.svg"
+    ],
+    photoshop: [
+      "Product mockup.png",
+      "Product mockup2.png",
+      "mockup.png"
+    ],
+    indesign: [
+      "Brochure1.png",
+      "Brochure2.png",
+      "kera brochure sample.png"
+    ]
+  };
+
+  let currentImages = [];
+  let currentIndex = 0;
+
+  function startSlideshow(tool) {
+    currentImages = imageSets[tool];
+    currentIndex = 0;
+
+    const viewer = document.getElementById("image-viewer");
+    const section = document.getElementById("project-section");
+
+    section.style.display = "none";
+    viewer.style.display = "flex";
+
+    showImage(true); // First image, no animation
+  }
+
+  function showImage(skipAnimation = false) {
+    const img = document.getElementById("viewer-img");
+    if (!img) return;
+
+    if (!skipAnimation) {
+      img.classList.remove("animate-in");
+      img.classList.add("animate-out");
+
+      setTimeout(() => {
+        img.src = currentImages[currentIndex];
+        img.classList.remove("animate-out");
+        requestAnimationFrame(() => {
+          img.classList.add("animate-in");
+        });
+      }, 250);
+    } else {
+      img.src = currentImages[currentIndex];
+      requestAnimationFrame(() => {
+        img.classList.add("animate-in");
+      });
+    }
+  }
+
+  function nextImage() {
+    currentIndex++;
+    if (currentIndex < currentImages.length) {
+      showImage();
+    } else {
+      const viewer = document.getElementById("image-viewer");
+      const section = document.getElementById("project-section");
+
+      viewer.style.display = "none";
+      section.style.display = "flex";
+    }
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      document.getElementById("image-viewer").style.display = "none";
+      document.getElementById("project-section").style.display = "flex";
+    }
+  });
+</script>
